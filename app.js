@@ -1,32 +1,29 @@
-const apiKey = "5979a2d2ab017b412a143b642882c2a5";
-const city = "Hosur";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SkyFetch Weather Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
 
-const cityElement = document.getElementById("city");
-const tempElement = document.getElementById("temperature");
-const descElement = document.getElementById("description");
-const iconElement = document.getElementById("icon");
+<body>
 
-const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+<h1>🌤 SkyFetch Weather Dashboard</h1>
 
-axios.get(apiURL)
-  .then(function(response) {
+<div class="search-box">
+<input type="text" id="cityInput" placeholder="Enter city name">
+<button id="searchBtn">Search</button>
+</div>
 
-    const data = response.data;
+<div class="recent-container">
+<h3>Recent Searches</h3>
+<div id="recentSearches"></div>
+<button id="clearBtn">Clear History</button>
+</div>
 
-    const cityName = data.name;
-    const temperature = data.main.temp;
-    const description = data.weather[0].description;
-    const iconCode = data.weather[0].icon;
+<div id="weatherResult"></div>
+<div id="forecast"></div>
 
-    cityElement.textContent = cityName;
-    tempElement.textContent = `Temperature: ${temperature}°C;`
-    descElement.textContent = `Condition: ${description};`
-    iconElement.src = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
-  })
-  .catch(function(error) {
-
-    console.error("Error fetching weather:", error);
-    cityElement.textContent = "Unable to fetch weather data.";
-
-  });
+<script src="app.js"></script>
+</body>
+</html>
